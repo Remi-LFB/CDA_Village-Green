@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\OrderRepository;
+use App\Repository\CommandRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: OrderRepository::class)]
-#[ORM\Table(name: '`order`')]
-class Order
+#[ORM\Entity(repositoryClass: CommandRepository::class)]
+class Command
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -70,19 +69,19 @@ class Order
     #[ORM\Column(type: 'decimal', precision: 4, scale: 2, nullable: true)]
     private $discount;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'orders')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'commands')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    #[ORM\OneToMany(mappedBy: 'ord', targetEntity: OrderDetails::class)]
-    private $orderDetails;
+    #[ORM\OneToMany(mappedBy: 'command', targetEntity: CommandDetails::class)]
+    private $commandDetails;
 
-    #[ORM\OneToMany(mappedBy: 'ord', targetEntity: Delivery::class)]
+    #[ORM\OneToMany(mappedBy: 'command', targetEntity: Delivery::class)]
     private $deliveries;
 
     public function __construct()
     {
-        $this->orderDetails = new ArrayCollection();
+        $this->commandDetails = new ArrayCollection();
         $this->deliveries = new ArrayCollection();
     }
 
@@ -320,29 +319,29 @@ class Order
     }
 
     /**
-     * @return Collection<int, OrderDetails>
+     * @return Collection<int, CommandDetails>
      */
-    public function getOrderDetails(): Collection
+    public function getCommandDetails(): Collection
     {
-        return $this->orderDetails;
+        return $this->commandDetails;
     }
 
-    public function addOrderDetail(OrderDetails $orderDetail): self
+    public function addCommandDetail(CommandDetails $commandDetail): self
     {
-        if (!$this->orderDetails->contains($orderDetail)) {
-            $this->orderDetails[] = $orderDetail;
-            $orderDetail->setOrd($this);
+        if (!$this->commandDetails->contains($commandDetail)) {
+            $this->commandDetails[] = $commandDetail;
+            $commandDetail->setCommand($this);
         }
 
         return $this;
     }
 
-    public function removeOrderDetail(OrderDetails $orderDetail): self
+    public function removeCommandDetail(CommandDetails $commandDetail): self
     {
-        if ($this->orderDetails->removeElement($orderDetail)) {
+        if ($this->commandDetails->removeElement($commandDetail)) {
             // set the owning side to null (unless already changed)
-            if ($orderDetail->getOrd() === $this) {
-                $orderDetail->setOrd(null);
+            if ($commandDetail->getCommand() === $this) {
+                $commandDetail->setCommand(null);
             }
         }
 
@@ -361,7 +360,7 @@ class Order
     {
         if (!$this->deliveries->contains($delivery)) {
             $this->deliveries[] = $delivery;
-            $delivery->setOrd($this);
+            $delivery->setCommand($this);
         }
 
         return $this;
@@ -371,8 +370,8 @@ class Order
     {
         if ($this->deliveries->removeElement($delivery)) {
             // set the owning side to null (unless already changed)
-            if ($delivery->getOrd() === $this) {
-                $delivery->setOrd(null);
+            if ($delivery->getCommand() === $this) {
+                $delivery->setCommand(null);
             }
         }
 

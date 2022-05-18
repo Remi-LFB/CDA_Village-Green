@@ -22,9 +22,9 @@ class Product
     private $name;
 
     #[ORM\Column(type: 'string', length: 150)]
-    private $label;
+    private $overview;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'text', nullable: true)]
     private $description;
 
     #[ORM\Column(type: 'decimal', precision: 6, scale: 2)]
@@ -47,15 +47,15 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private $subCategory;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderDetails::class)]
-    private $orderDetails;
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: CommandDetails::class)]
+    private $commandDetails;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: DeliveryDetails::class)]
     private $deliveryDetails;
 
     public function __construct()
     {
-        $this->orderDetails = new ArrayCollection();
+        $this->commandDetails = new ArrayCollection();
         $this->deliveryDetails = new ArrayCollection();
     }
 
@@ -88,14 +88,14 @@ class Product
         return $this;
     }
 
-    public function getLabel(): ?string
+    public function getOverview(): ?string
     {
-        return $this->label;
+        return $this->overview;
     }
 
-    public function setLabel(string $label): self
+    public function setOverview(string $overview): self
     {
-        $this->label = $label;
+        $this->overview = $overview;
 
         return $this;
     }
@@ -105,7 +105,7 @@ class Product
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -185,29 +185,29 @@ class Product
     }
 
     /**
-     * @return Collection<int, OrderDetails>
+     * @return Collection<int, CommandDetails>
      */
-    public function getOrderDetails(): Collection
+    public function getCommandDetails(): Collection
     {
-        return $this->orderDetails;
+        return $this->commandDetails;
     }
 
-    public function addOrderDetail(OrderDetails $orderDetail): self
+    public function addCommandDetail(CommandDetails $commandDetail): self
     {
-        if (!$this->orderDetails->contains($orderDetail)) {
-            $this->orderDetails[] = $orderDetail;
-            $orderDetail->setProduct($this);
+        if (!$this->commandDetails->contains($commandDetail)) {
+            $this->commandDetails[] = $commandDetail;
+            $commandDetail->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removeOrderDetail(OrderDetails $orderDetail): self
+    public function removeCommandDetail(CommandDetails $commandDetail): self
     {
-        if ($this->orderDetails->removeElement($orderDetail)) {
+        if ($this->commandDetails->removeElement($commandDetail)) {
             // set the owning side to null (unless already changed)
-            if ($orderDetail->getProduct() === $this) {
-                $orderDetail->setProduct(null);
+            if ($commandDetail->getProduct() === $this) {
+                $commandDetail->setProduct(null);
             }
         }
 

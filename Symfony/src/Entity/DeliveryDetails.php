@@ -21,6 +21,9 @@ class DeliveryDetails
     #[ORM\JoinColumn(nullable: false)]
     private $delivery;
 
+    #[ORM\Column(type: 'integer')]
+    private $quantity;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,6 +49,18 @@ class DeliveryDetails
     public function setDelivery(?Delivery $delivery): self
     {
         $this->delivery = $delivery;
+
+        return $this;
+    }
+
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(int $quantity): self
+    {
+        $this->quantity = $quantity;
 
         return $this;
     }

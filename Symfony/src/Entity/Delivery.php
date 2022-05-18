@@ -18,9 +18,9 @@ class Delivery
     #[ORM\Column(type: 'datetime')]
     private $date;
 
-    #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'deliveries')]
+    #[ORM\ManyToOne(targetEntity: Command::class, inversedBy: 'deliveries')]
     #[ORM\JoinColumn(nullable: false)]
-    private $ord;
+    private $command;
 
     #[ORM\OneToMany(mappedBy: 'delivery', targetEntity: DeliveryDetails::class)]
     private $deliveryDetails;
@@ -47,14 +47,14 @@ class Delivery
         return $this;
     }
 
-    public function getOrd(): ?Order
+    public function getCommand(): ?Command
     {
-        return $this->ord;
+        return $this->command;
     }
 
-    public function setOrd(?Order $ord): self
+    public function setCommand(?Command $command): self
     {
-        $this->ord = $ord;
+        $this->command = $command;
 
         return $this;
     }

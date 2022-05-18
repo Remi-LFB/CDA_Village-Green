@@ -66,19 +66,19 @@ class User
     #[ORM\Column(type: 'string', length: 15, nullable: true)]
     private $delCountry;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'users')]
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'commercials')]
     private $commercial;
 
     #[ORM\OneToMany(mappedBy: 'commercial', targetEntity: self::class)]
-    private $users;
+    private $commercials;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
-    private $orders;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Command::class)]
+    private $commands;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
-        $this->orders = new ArrayCollection();
+        $this->commercials = new ArrayCollection();
+        $this->commands = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -305,27 +305,27 @@ class User
     /**
      * @return Collection<int, self>
      */
-    public function getUsers(): Collection
+    public function getCommercials(): Collection
     {
-        return $this->users;
+        return $this->commercials;
     }
 
-    public function addUser(self $user): self
+    public function addCommercial(self $commercial): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->setCommercial($this);
+        if (!$this->commercials->contains($commercial)) {
+            $this->commercials[] = $commercial;
+            $commercial->setCommercial($this);
         }
 
         return $this;
     }
 
-    public function removeUser(self $user): self
+    public function removeCommercial(self $commercial): self
     {
-        if ($this->users->removeElement($user)) {
+        if ($this->commercials->removeElement($commercial)) {
             // set the owning side to null (unless already changed)
-            if ($user->getCommercial() === $this) {
-                $user->setCommercial(null);
+            if ($commercial->getCommercial() === $this) {
+                $commercial->setCommercial(null);
             }
         }
 
@@ -333,29 +333,29 @@ class User
     }
 
     /**
-     * @return Collection<int, Order>
+     * @return Collection<int, Command>
      */
-    public function getOrders(): Collection
+    public function getCommands(): Collection
     {
-        return $this->orders;
+        return $this->commands;
     }
 
-    public function addOrder(Order $order): self
+    public function addCommand(Command $command): self
     {
-        if (!$this->orders->contains($order)) {
-            $this->orders[] = $order;
-            $order->setUser($this);
+        if (!$this->commands->contains($command)) {
+            $this->commands[] = $command;
+            $command->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeOrder(Order $order): self
+    public function removeCommand(Command $command): self
     {
-        if ($this->orders->removeElement($order)) {
+        if ($this->commands->removeElement($command)) {
             // set the owning side to null (unless already changed)
-            if ($order->getUser() === $this) {
-                $order->setUser(null);
+            if ($command->getUser() === $this) {
+                $command->setUser(null);
             }
         }
 
