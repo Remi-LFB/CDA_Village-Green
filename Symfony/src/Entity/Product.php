@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -15,17 +13,20 @@ class Product
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 8, unique: true)]
+    #[ORM\Column(type: 'string', length: 8)]
     private $reference;
 
-    #[ORM\Column(type: 'string', length: 30)]
-    private $name;
+    #[ORM\Column(type: 'string', length: 50)]
+    private $label;
 
     #[ORM\Column(type: 'string', length: 150)]
     private $overview;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(type: 'text')]
     private $description;
+
+    #[ORM\Column(type: 'string', length: 15)]
+    private $color;
 
     #[ORM\Column(type: 'decimal', precision: 6, scale: 2)]
     private $price;
@@ -34,10 +35,16 @@ class Product
     private $stock;
 
     #[ORM\Column(type: 'boolean')]
-    private $status;
+    private $state;
 
-    #[ORM\Column(type: 'string', length: 4)]
+    #[ORM\Column(type: 'string', length: 255)]
     private $picture;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    private $createdAt;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $updatedAt;
 
     #[ORM\ManyToOne(targetEntity: Supplier::class, inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
@@ -46,18 +53,6 @@ class Product
     #[ORM\ManyToOne(targetEntity: SubCategory::class, inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
     private $subCategory;
-
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: CommandDetails::class)]
-    private $commandDetails;
-
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: DeliveryDetails::class)]
-    private $deliveryDetails;
-
-    public function __construct()
-    {
-        $this->commandDetails = new ArrayCollection();
-        $this->deliveryDetails = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -76,14 +71,14 @@ class Product
         return $this;
     }
 
-    public function getName(): ?string
+    public function getLabel(): ?string
     {
-        return $this->name;
+        return $this->label;
     }
 
-    public function setName(string $name): self
+    public function setLabel(string $label): self
     {
-        $this->name = $name;
+        $this->label = $label;
 
         return $this;
     }
@@ -105,9 +100,21 @@ class Product
         return $this->description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
 
         return $this;
     }
@@ -136,14 +143,14 @@ class Product
         return $this;
     }
 
-    public function isStatus(): ?bool
+    public function isState(): ?bool
     {
-        return $this->status;
+        return $this->state;
     }
 
-    public function setStatus(bool $status): self
+    public function setState(bool $state): self
     {
-        $this->status = $status;
+        $this->state = $state;
 
         return $this;
     }
@@ -156,6 +163,30 @@ class Product
     public function setPicture(string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
@@ -180,66 +211,6 @@ class Product
     public function setSubCategory(?SubCategory $subCategory): self
     {
         $this->subCategory = $subCategory;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, CommandDetails>
-     */
-    public function getCommandDetails(): Collection
-    {
-        return $this->commandDetails;
-    }
-
-    public function addCommandDetail(CommandDetails $commandDetail): self
-    {
-        if (!$this->commandDetails->contains($commandDetail)) {
-            $this->commandDetails[] = $commandDetail;
-            $commandDetail->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommandDetail(CommandDetails $commandDetail): self
-    {
-        if ($this->commandDetails->removeElement($commandDetail)) {
-            // set the owning side to null (unless already changed)
-            if ($commandDetail->getProduct() === $this) {
-                $commandDetail->setProduct(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, DeliveryDetails>
-     */
-    public function getDeliveryDetails(): Collection
-    {
-        return $this->deliveryDetails;
-    }
-
-    public function addDeliveryDetail(DeliveryDetails $deliveryDetail): self
-    {
-        if (!$this->deliveryDetails->contains($deliveryDetail)) {
-            $this->deliveryDetails[] = $deliveryDetail;
-            $deliveryDetail->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDeliveryDetail(DeliveryDetails $deliveryDetail): self
-    {
-        if ($this->deliveryDetails->removeElement($deliveryDetail)) {
-            // set the owning side to null (unless already changed)
-            if ($deliveryDetail->getProduct() === $this) {
-                $deliveryDetail->setProduct(null);
-            }
-        }
 
         return $this;
     }

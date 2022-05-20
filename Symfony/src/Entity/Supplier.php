@@ -21,10 +21,10 @@ class Supplier
     #[ORM\Column(type: 'string', length: 15)]
     private $type;
 
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: 'string', length: 100)]
     private $contact;
 
-    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[ORM\Column(type: 'string', length: 255)]
     private $mail;
 
     #[ORM\Column(type: 'string', length: 10)]
@@ -39,7 +39,7 @@ class Supplier
     #[ORM\Column(type: 'string', length: 50)]
     private $city;
 
-    #[ORM\Column(type: 'string', length: 15)]
+    #[ORM\Column(type: 'string', length: 50)]
     private $country;
 
     #[ORM\OneToMany(mappedBy: 'supplier', targetEntity: Product::class)]
