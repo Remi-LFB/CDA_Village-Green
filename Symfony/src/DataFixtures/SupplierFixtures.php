@@ -10,37 +10,46 @@ class SupplierFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        for ($i = 1; $i <= 2; $i++) {
-            $name = "supplier{$i}";
-            $$name = new Supplier();
-        }
+        $suppliers = [
+            1 => [
+                'name' => 'Ibanez',
+                'type' => 'Constructeur',
+                'contact' => 'Ibah Neise',
+                'mail' => 'ibah.neise@ibanez.com',
+                'phone' => '0102030405',
+                'address' => '42 Avenue du Sushi',
+                'zipcode' => '08501',
+                'city' => 'Nagoya',
+                'country' => 'Japon'
+            ],
+            2 => [
+                'name' => 'Algam',
+                'type' => 'Importateur',
+                'contact' => 'Hall Gamme',
+                'mail' => 'hall.gamme@algam.fr',
+                'phone' => '0203040506',
+                'address' => '24 Rue de la musique',
+                'zipcode' => '80000',
+                'city' => 'Amiens',
+                'country' => 'France'
+            ]
+        ];
 
-        $supplier1
-            ->setName('Ibanez')
-            ->setType('Constructeur')
-            ->setContact('Ibah Neise')
-            ->setMail('ibah.neise@ibanez.com')
-            ->setPhone('0102030405')
-            ->setAddress('42 Avenue du Sushi')
-            ->setZipcode('08501')
-            ->setCity('Nagoya')
-            ->setCountry('Japon');
+        foreach ($suppliers as $key => $value) {
+            $supplier = new Supplier();
 
-        $supplier2
-            ->setName('Algam')
-            ->setType('Importateur')
-            ->setContact('Hall Gamme')
-            ->setMail('hall.gamme@algam.fr')
-            ->setPhone('0203040506')
-            ->setAddress('24 Rue de la musique')
-            ->setZipcode('80000')
-            ->setCity('Amiens')
-            ->setCountry('France');
+            $supplier
+                ->setName($value['name'])
+                ->setType($value['type'])
+                ->setContact($value['contact'])
+                ->setMail($value['mail'])
+                ->setPhone($value['phone'])
+                ->setAddress($value['address'])
+                ->setZipcode($value['zipcode'])
+                ->setCity($value['city'])
+                ->setCountry($value['country']);
 
-        for ($i = 1; $i <= 2; $i++) {
-            $name = "supplier{$i}";
-
-            $manager->persist($$name);
+            $manager->persist($supplier);
         }
     }
 }

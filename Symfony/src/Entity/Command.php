@@ -61,11 +61,11 @@ class Command
     #[ORM\OneToMany(mappedBy: 'command', targetEntity: CommandDetails::class)]
     private $commandDetails;
 
-    #[ORM\OneToOne(mappedBy: 'command', targetEntity: Invoice::class, cascade: ['persist', 'remove'])]
-    private $invoice;
-
     #[ORM\OneToMany(mappedBy: 'command', targetEntity: Delivery::class)]
     private $deliveries;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $invoicedAt;
 
     public function __construct()
     {
@@ -276,23 +276,6 @@ class Command
         return $this;
     }
 
-    public function getInvoice(): ?Invoice
-    {
-        return $this->invoice;
-    }
-
-    public function setInvoice(Invoice $invoice): self
-    {
-        // set the owning side of the relation if necessary
-        if ($invoice->getCommand() !== $this) {
-            $invoice->setCommand($this);
-        }
-
-        $this->invoice = $invoice;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Delivery>
      */
@@ -319,6 +302,18 @@ class Command
                 $delivery->setCommand(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getInvoicedAt(): ?\DateTimeInterface
+    {
+        return $this->invoicedAt;
+    }
+
+    public function setInvoicedAt(?\DateTimeInterface $invoicedAt): self
+    {
+        $this->invoicedAt = $invoicedAt;
 
         return $this;
     }

@@ -15,45 +15,48 @@ class SubCategoryFixtures extends Fixture
         $category2 = $manager->getRepository(Category::class)->findOneBy(['name' => 'Batteries']);
         $category3 = $manager->getRepository(Category::class)->findOneBy(['name' => 'Pianos']);
 
-        for ($i = 1; $i <= 6; $i++) {
-            $name = "subCategory{$i}";
-            $$name = new SubCategory();
-        }
+        $subCategories = [
+            1 => [
+                'name' => 'Guitares classiques',
+                'picture' => 'url',
+                'category' => $category1
+            ],
+            2 => [
+                'name' => 'Guitares électriques',
+                'picture' => 'url',
+                'category' => $category1
+            ],
+            3 => [
+                'name' => 'Guitares basses',
+                'picture' => 'url',
+                'category' => $category1
+            ],
+            4 => [
+                'name' => 'Batteries acoustiques',
+                'picture' => 'url',
+                'category' => $category2
+            ],
+            5 => [
+                'name' => 'Batteries électroniques',
+                'picture' => 'url',
+                'category' => $category2
+            ],
+            6 => [
+                'name' => 'Synthétiseurs',
+                'picture' => 'url',
+                'category' => $category3
+            ]
+        ];
 
-        $subCategory1
-            ->setName('Guitares classiques')
-            ->setPicture('url')
-            ->setCategory($category1);
+        foreach ($subCategories as $key => $value) {
+            $subCategory = new subCategory();
 
-        $subCategory2
-            ->setName('Guitares électriques')
-            ->setPicture('url')
-            ->setCategory($category1);
+            $subCategory
+                ->setName($value['name'])
+                ->setPicture($value['picture'])
+                ->setCategory($value['category']);
 
-        $subCategory3
-            ->setName('Guitares basses')
-            ->setPicture('url')
-            ->setCategory($category1);
-
-        $subCategory4
-            ->setName('Batteries acoustiques')
-            ->setPicture('url')
-            ->setCategory($category2);
-
-        $subCategory5
-            ->setName('Batteries électroniques')
-            ->setPicture('url')
-            ->setCategory($category2);
-
-        $subCategory6
-            ->setName('Synthétiseurs')
-            ->setPicture('url')
-            ->setCategory($category3);
-
-        for ($i = 1; $i <= 6; $i++) {
-            $name = "subCategory{$i}";
-
-            $manager->persist($$name);
+            $manager->persist($subCategory);
         }
     }
 }

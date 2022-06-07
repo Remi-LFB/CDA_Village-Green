@@ -10,27 +10,29 @@ class CategoryFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        for ($i = 1; $i <= 3; $i++) {
-            $name = "category{$i}";
-            $$name = new Category();
-        }
+        $categories = [
+            1 => [
+                'name' => 'Guitares',
+                'picture' => 'url'
+            ],
+            2 => [
+                'name' => 'Batteries',
+                'picture' => 'url'
+            ],
+            3 => [
+                'name' => 'Pianos',
+                'picture' => 'url'
+            ]
+        ];
 
-        $category1
-            ->setName('Guitares')
-            ->setPicture('url');
+        foreach ($categories as $key => $value) {
+            $categorie = new Category();
 
-        $category2
-            ->setName('Batteries')
-            ->setPicture('url');
+            $categorie
+                ->setName($value['name'])
+                ->setPicture($value['picture']);
 
-        $category3
-            ->setName('Pianos')
-            ->setPicture('url');
-
-        for ($i = 1; $i <= 3; $i++) {
-            $name = "category{$i}";
-
-            $manager->persist($$name);
+            $manager->persist($categorie);
         }
     }
 }

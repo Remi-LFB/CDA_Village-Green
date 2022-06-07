@@ -9,15 +9,31 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $fixtures1 = new CategoryFixtures();
-        $fixtures2 = new SubCategoryFixtures();
-        $fixtures3 = new SupplierFixtures();
-        $fixtures4 = new ProductFixtures();
+        $fixtures = [
+            1 => [
+                'name' => new CategoryFixtures()
+            ],
+            2 => [
+                'name' => new SubCategoryFixtures()
+            ],
+            3 => [
+                'name' => new SupplierFixtures()
+            ],
+            4 => [
+                'name' => new ProductFixtures()
+            ],
+            5 => [
+                'name' => new UserFixtures()
+            ],
+            6 => [
+                'name' => new CommandFixtures()
+            ]
+        ];
 
-        for ($i = 1; $i <= 4; $i++) {
-            $name = "fixtures{$i}";
-            $$name->load($manager);
+        foreach ($fixtures as $key => $value) {
+            $fixture = $value['name'];
 
+            $fixture->load($manager);
             $manager->flush();
         }
     }
