@@ -27,6 +27,15 @@ class AppFixtures extends Fixture
             ],
             6 => [
                 'name' => new CommandFixtures()
+            ],
+            7 => [
+                'name' => new CommandDetailsFixtures()
+            ],
+            8 => [
+                'name' => new DeliveryFixtures()
+            ],
+            9 => [
+                'name' => new DeliveryDetailsFixtures()
             ]
         ];
 

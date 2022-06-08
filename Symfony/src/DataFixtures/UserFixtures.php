@@ -18,7 +18,7 @@ class UserFixtures extends Fixture
                 'reference' => 'USE001',
                 'lastname' => $faker->lastName,
                 'firstname' => $faker->firstName,
-                'birthAt' => new \DateTime($faker->date()),
+                'birthAt' => new \DateTime($faker->date('Y-m-d', '2000-01-01')),
                 'type' => 'Employé',
                 'coefficient' => 1.0,
                 'role' => 'Administrateur',
