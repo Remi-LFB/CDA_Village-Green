@@ -12,7 +12,7 @@ class CategoryFixtures extends Fixture
     {
         $categories = [
             1 => [
-                'name' => 'Guitares',
+                'name' => 'Guitares & Basses',
                 'picture' => 'url'
             ],
             2 => [

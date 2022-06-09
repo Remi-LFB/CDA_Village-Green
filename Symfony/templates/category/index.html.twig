@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Village Green{% endblock %}
+
+{% block body %}
+    <div class="text-center">
+        <h1>{{ category.name }}</h1>
+
+        {% for subCategory in subCategories %}
+            <a href="">{{ subCategory.name }}</a><br>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -11,7 +11,7 @@ class SubCategoryFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $category1 = $manager->getRepository(Category::class)->findOneBy(['name' => 'Guitares']);
+        $category1 = $manager->getRepository(Category::class)->findOneBy(['name' => 'Guitares & Basses']);
         $category2 = $manager->getRepository(Category::class)->findOneBy(['name' => 'Batteries']);
         $category3 = $manager->getRepository(Category::class)->findOneBy(['name' => 'Pianos']);
 
