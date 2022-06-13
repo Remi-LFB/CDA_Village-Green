@@ -4,18 +4,16 @@
 
 {% block body %}
     <div class="text-center">
-        <h1>Nos catégories</h1>
+        <h1 class="h2 fw-bold">Nos catégories</h1><br>
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for category in categories %}
-            <a href="{{ path('category_show', {'id': category.id}) }}">
+            <a class="a-category" href="{{ path('category_show', {'id': category.id}) }}">
                 <div class="col">
-                    <div class="card h-100">
-                        <img src="https://via.placeholder.com/150x150" class="card-img-top" alt="...">
+                        <img src="{{ category.picture }}" class="img-fluid mx-auto hover-zoom" alt="{{ category.name }}" title="{{ category.name }}">
                         <div class="card-body">
-                            <h5 class="card-title">{{ category.name }}</h5>
+                            <h5 class="card-title">{{ category.name }}</h5><hr class="text-black">
                         </div>
-                    </div>
                 </div>
             </a>
         {% endfor %}

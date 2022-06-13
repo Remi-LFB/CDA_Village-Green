@@ -1,0 +1,11 @@
+* {
+    font-family: Georgia, serif;
+}
+
+.a-category {
+    color: black;
+}
+
+a:hover {
+    color: green;
+}
