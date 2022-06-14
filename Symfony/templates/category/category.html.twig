@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ categoryName }} | Village Green{% endblock %}
+
+{% block body %}
+    <p>Breadcrumb : Accueil/{{ categoryName }}</p>
+
+    <div class="text-center">
+        <h1 class="h2 fw-bold">{{ categoryName }}</h1>
+
+        {% for subCategory in subCategories %}
+            <a href="{{ path('subcategory_show', {'subCategory': subCategory.id}) }}">{{ subCategory.name }}</a><br>
+        {% endfor %}
+    </div>
+{% endblock %}
