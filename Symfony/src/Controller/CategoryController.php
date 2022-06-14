@@ -2,23 +2,19 @@
 
 namespace App\Controller;
 
-use App\Repository\CategoryRepository;
-use App\Repository\SubCategoryRepository;
+use App\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/category/{id}', name: 'category_show')]
-    public function index(CategoryRepository $catRepository, SubCategoryRepository $subCatRepository, $id): Response
+    #[Route('/category/{category}', name: 'category_show')]
+    public function index(Category $category): Response
     {
-        $category = $catRepository->find($id);
-        $subCategories = $subCatRepository->findBy(['category' => $id]);
-
         return $this->render('category/index.html.twig', [
-            'category' => $category,
-            'subCategories' => $subCategories
+            'categoryName' => $category->getName(),
+            'subCategories' => $category->getSubCategories()
         ]);
     }
 }
