@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ subCategory.name }} | Village Green{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item">
+        <a class="text-white" href="{{ path('category_show', {'category': subCategory.category.id}) }}">{{ subCategory.category.name }}</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a class="text-white" href="{{ path('subcategory_show', {'subCategory': subCategory.id}) }}">{{ subCategory.name }}</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="text-center mt-3">
+        <h1 class="h2 fw-bold">{{ subCategory.name }}</h1>
+        {% for product in subCategory.products %}
+            <a href="">{{ product.label }}</a><br>
+        {% endfor %}
+    </div>
+{% endblock %}

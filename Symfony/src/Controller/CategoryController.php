@@ -13,19 +13,16 @@ class CategoryController extends AbstractController
     #[Route('/category/{category}', name: 'category_show')]
     public function categoryShow(Category $category): Response
     {
-        return $this->render('category/category.html.twig', [
-            'categoryName' => $category->getName(),
-            'subCategories' => $category->getSubCategories()
+        return $this->render('category/catshow.html.twig', [
+            'category' => $category
         ]);
     }
 
     #[Route('/subcategory/{subCategory}', name: 'subcategory_show')]
     public function subCategoryShow(SubCategory $subCategory): Response
     {
-        return $this->render('category/subcategory.html.twig', [
-            'categoryName' => $subCategory->getCategory()->getName(),
-            'subCategoryName' => $subCategory->getName(),
-            'products' => $subCategory->getProducts()
+        return $this->render('category/subcatshow.html.twig', [
+            'subCategory' => $subCategory
         ]);
     }
 }

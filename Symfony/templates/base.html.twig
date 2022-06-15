@@ -41,7 +41,7 @@
 
                     <form class="d-flex input-group w-auto mx-auto">
                         <div class="form-outline">
-                            <input type="email" id="form1Example1" class="form-control" />
+                            <input type="email" id="form1Example1" class="form-control"/>
                             <label class="form-label" for="form1Example1"><i class="fas fa-search"></i> Recherche</label>
                         </div>
       </span>
@@ -90,13 +90,12 @@
         </nav>
         <!-- Navbar -->
 
-        <nav class="navbar bg-dark mb-3">
+        <nav class="navbar bg-dark d-none d-md-block d-lg-block d-xl-block">
             <div class="container">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a class="text-white" href="{{ path('home') }}">Acceuil</a></li>
-                        <li class="breadcrumb-item"><a class="text-white" href="#">Catégorie</a></li>
-
+                        {% block breadcrumb %}{% endblock %}
                     </ol>
                 </nav>
             </div>
@@ -107,7 +106,7 @@
         </div>
 
         <!-- Footer -->
-        <footer class="bg-dark text-center text-white">
+        <footer class="bg-dark text-center text-white mt-4">
             <!-- Grid container -->
             <div class="container p-4">
                 <!-- Section: Social media -->
@@ -137,7 +136,7 @@
                                     30 Rue de Poulainville
                                 </li>
                                 <li>
-                                    80000, Amiens
+                                    80000 Amiens
                                 </li>
                                 <li>
                                     03.29.92.30.03
@@ -172,7 +171,7 @@
             <!-- Grid container -->
 
             <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            <div class="text-center p-3" id="copyright">
                 © 2022 Village Green
             </div>
             <!-- Copyright -->
