@@ -13,9 +13,37 @@
 
 {% block body %}
     <div class="text-center mt-3">
-        <h1 class="h2 fw-bold">{{ subCategory.name }}</h1>
-        {% for product in subCategory.products %}
-            <a href="">{{ product.label }}</a><br>
-        {% endfor %}
+        <h1 class="h2 fw-bold">{{ subCategory.name }}</h1><br>
+        <div class="row row-cols-1 row-cols-md-3 g-5">
+            {% for product in subCategory.products %}
+                <div class="col">
+                    <div class="card h-100 m-1">
+                        <a class="a-category" href="{{ path('product_show', {'product': product.id}) }}">
+                            <img src="{{ product.picture }}" class="img-fluid mx-auto pb-3" height="200" width="200" alt="{{ product.label }}" title="{{ product.label }}">
+                            <h5>{{ product.label }}</h5>
+                            <p class="text-black">{{ product.overview|nl2br }}</p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Prix</th>
+                                        <th scope="col">Stock</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ product.price }}€</td>
+                                        {% if product.state == false or product.stock < 1 %}
+                                            <td class="text-danger">Indisponible</td>
+                                        {% else %}
+                                            <td class="text-success">Disponible</td>
+                                        {% endif %}
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

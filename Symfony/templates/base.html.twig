@@ -1,183 +1,135 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>{% block title %}{% endblock %}</title>
-        <!-- MDB -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.css">
-        <!-- Feuille de style personnalisée -->
-        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <!-- Google Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    </head>
-    <body>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <!-- Container wrapper -->
-            <div class="container">
-                <!-- Toggle button -->
-                <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-mdb-toggle="collapse"
-                        data-mdb-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                >
-                    <i class="fas fa-bars"></i>
-                </button>
-
-                <!-- Collapsible wrapper -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Navbar brand -->
-                    <a class="navbar-brand mt-2 mt-lg-0 fw-bold" href="{{ path('home') }}">Village Green</a>
-                    <!-- Left links -->
-
-                    <form class="d-flex input-group w-auto mx-auto">
-                        <div class="form-outline">
-                            <input type="email" id="form1Example1" class="form-control"/>
-                            <label class="form-label" for="form1Example1"><i class="fas fa-search"></i> Recherche</label>
-                        </div>
-      </span>
-                    </form>
-                </div>
-                <!-- Collapsible wrapper -->
-
-                <!-- Right elements -->
-                <div class="d-flex align-items-center">
-                    <!-- Icon -->
-                    <a class="text-reset me-3" href="#">
-                        <i class="fas fa-shopping-cart"></i>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.css">
+    <!-- Stylesheet personnalisée -->
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <a class="navbar-brand mt-2 mt-lg-0 fw-bold" href="{{ path('home') }}">Village Green</a>
+                <!-- Formulaire de recherche -->
+                <form class="d-flex input-group w-auto mx-auto">
+                    <div class="form-outline">
+                        <input type="email" id="form1Example1" class="form-control">
+                        <label class="form-label" for="form1Example1"><i class="fas fa-search"></i> Recherche</label>
+                    </div>
+                </form>
+            </div>
+            <!-- Icônes de droite -->
+            <div class="d-flex align-items-center">
+                <!-- Panier -->
+                <a class="text-reset me-3" href="#"><i class="fas fa-shopping-cart"></i></a>
+                <!-- Connexion/Profil -->
+                <div class="dropdown">
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow text-reset" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-right-to-bracket"></i>
                     </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                        <li>
+                            <a class="dropdown-item" href="#">My profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Settings</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-                    <!-- Avatar -->
-                    <div class="dropdown">
-                        <a
-                                class="dropdown-toggle d-flex align-items-center hidden-arrow text-reset"
-                                href="#"
-                                id="navbarDropdownMenuAvatar"
-                                role="button"
-                                data-mdb-toggle="dropdown"
-                                aria-expanded="false"
-                        >
-                            <i class="fas fa-right-to-bracket"></i>
-                        </a>
-                        <ul
-                                class="dropdown-menu dropdown-menu-end"
-                                aria-labelledby="navbarDropdownMenuAvatar"
-                        >
+    <!-- Breadcrumb -->
+    <nav class="navbar bg-dark d-none d-md-block d-lg-block d-xl-block">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="text-white" href="{{ path('home') }}">Acceuil</a></li>
+                    {% block breadcrumb %}{% endblock %}
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <!-- Contenu -->
+    <div class="container">
+        {% block body %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white mt-4">
+        <div class="container p-4">
+            <!-- Médias sociaux -->
+            <section class="mb-4">
+                <!-- LinkedIn -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <!-- GitHub -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <i class="fab fa-github"></i>
+                </a>
+            </section>
+            <!-- Liens -->
+            <section>
+                <div class="row">
+                    <!-- Contact -->
+                    <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Contact</h5>
+                        <ul class="list-unstyled mb-0">
                             <li>
-                                <a class="dropdown-item" href="#">My profile</a>
+                                30 Rue de Poulainville
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Settings</a>
+                                80000 Amiens
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Logout</a>
+                                03.29.92.30.03
+                            </li>
+                            <li>
+                                village-green@afpa.fr
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Liens -->
+                    <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Liens</h5>
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="#" class="text-white">Mentions légales</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white">Nous contacter</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <!-- Right elements -->
-            </div>
-            <!-- Container wrapper -->
-        </nav>
-        <!-- Navbar -->
-
-        <nav class="navbar bg-dark d-none d-md-block d-lg-block d-xl-block">
-            <div class="container">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="text-white" href="{{ path('home') }}">Acceuil</a></li>
-                        {% block breadcrumb %}{% endblock %}
-                    </ol>
-                </nav>
-            </div>
-        </nav>
-
-        <div class="container">
-            {% block body %}{% endblock %}
+            </section>
         </div>
+        <!-- Copyright -->
+        <div class="text-center p-3" id="copyright">
+            © 2022 Village Green
+        </div>
+    </footer>
 
-        <!-- Footer -->
-        <footer class="bg-dark text-center text-white mt-4">
-            <!-- Grid container -->
-            <div class="container p-4">
-                <!-- Section: Social media -->
-                <section class="mb-4">
-                    <!-- Linkedin -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                    ><i class="fab fa-linkedin-in"></i
-                        ></a>
-
-                    <!-- Github -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                    ><i class="fab fa-github"></i
-                        ></a>
-                </section>
-                <!-- Section: Social media -->
-
-                <!-- Section: Links -->
-                <section class="">
-                    <!--Grid row-->
-                    <div class="row">
-                        <!--Grid column-->
-                        <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
-                            <h5 class="text-uppercase">Contact</h5>
-
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    30 Rue de Poulainville
-                                </li>
-                                <li>
-                                    80000 Amiens
-                                </li>
-                                <li>
-                                    03.29.92.30.03
-                                </li>
-                                <li>
-                                    village-green@afpa.fr
-                                </li>
-                            </ul>
-                        </div>
-                        <!--Grid column-->
-
-                        <!--Grid column-->
-                        <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
-                            <h5 class="text-uppercase">Liens</h5>
-
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#!" class="text-white">Mentions légales</a>
-                                </li>
-                                <li>
-                                    <a href="#!" class="text-white">Nous contacter</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--Grid column-->
-
-                    </div>
-                    <!--Grid row-->
-                </section>
-                <!-- Section: Links -->
-            </div>
-            <!-- Grid container -->
-
-            <!-- Copyright -->
-            <div class="text-center p-3" id="copyright">
-                © 2022 Village Green
-            </div>
-            <!-- Copyright -->
-        </footer>
-
-        <!-- MDB -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.js"></script>
-        </body>
+    <!-- Material Design Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.js"></script>
+    </body>
 </html>

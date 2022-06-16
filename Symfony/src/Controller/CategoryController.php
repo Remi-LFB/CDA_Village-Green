@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
     #[Route('/category/{category}', name: 'category_show')]
-    public function categoryShow(Category $category): Response
+    public function category_show(Category $category): Response
     {
         return $this->render('category/catshow.html.twig', [
             'category' => $category
@@ -19,7 +19,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/subcategory/{subCategory}', name: 'subcategory_show')]
-    public function subCategoryShow(SubCategory $subCategory): Response
+    public function subcategory_show(SubCategory $subCategory): Response
     {
         return $this->render('category/subcatshow.html.twig', [
             'subCategory' => $subCategory
