@@ -3,7 +3,7 @@
 {% block title %}{{ category.name }} | Village Green{% endblock %}
 
 {% block breadcrumb %}
-    <li class="breadcrumb-item">
+    <li class="breadcrumb-item d-none d-md-block d-lg-block d-xl-block">
         <a class="text-white" href="{{ path('category_show', {'category': category.id}) }}">{{ category.name }}</a>
     </li>
 {% endblock %}

@@ -1,6 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProductController!{% endblock %}
+{% block title %}{{ product.label }} | Village Green{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item d-none d-md-block d-lg-block d-xl-block">
+        <a class="text-white" href="{{ path('category_show', {'category': product.subCategory.category.id}) }}">{{ product.subCategory.category.name }}</a>
+    </li>
+    <li class="breadcrumb-item d-none d-md-block d-lg-block d-xl-block">
+        <a class="text-white" href="{{ path('subcategory_show', {'subCategory': product.subCategory.id}) }}">{{ product.subCategory.name }}</a>
+    </li>
+    <li class="breadcrumb-item d-none d-md-block d-lg-block d-xl-block">
+        <a class="text-white" href="{{ path('product_show', {'product': product.id}) }}">{{ product.label }}</a>
+    </li>
+{% endblock %}
 
 {% block body %}
 
