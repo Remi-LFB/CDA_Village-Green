@@ -19,23 +19,17 @@
                 <div class="col">
                     <div class="card h-100">
                         <a class="a-category" href="{{ path('product_show', {'product': product.id}) }}">
-                            <img src="{{ product.picture }}" class="img-fluid mx-auto" height="250" width="250" alt="{{ product.label }}" title="{{ product.label }}">
+                            <img src="{{ product.picture }}" class="img-fluid mx-auto pb-3" height="250" width="250" alt="{{ product.label }}" title="{{ product.label }}">
                             <h5>{{ product.label }}</h5>
                             <p class="text-black">{{ product.overview|nl2br }}</p>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Prix</th>
-                                        <th scope="col">Stock</th>
-                                    </tr>
-                                </thead>
+                            <table class="table border-top">
                                 <tbody>
                                     <tr>
                                         <td>{{ product.price }}€</td>
-                                        {% if product.state == false or product.stock < 1 %}
+                                        {% if not product.state or product.stock < 1 %}
                                             <td class="text-danger">Indisponible</td>
                                         {% else %}
-                                            <td class="text-success">Disponible</td>
+                                            <td class="text-success">En stock</td>
                                         {% endif %}
                                     </tr>
                                 </tbody>
