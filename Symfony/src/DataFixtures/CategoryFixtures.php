@@ -13,15 +13,19 @@ class CategoryFixtures extends Fixture
         $categories = [
             1 => [
                 'name' => 'Guitares & Basses',
-                'picture' => 'url'
+                'picture' => 'images/categories/1.png'
             ],
             2 => [
-                'name' => 'Batteries',
-                'picture' => 'url'
+                'name' => 'Batteries & Percussions',
+                'picture' => 'images/categories/2.png'
             ],
             3 => [
-                'name' => 'Pianos',
-                'picture' => 'url'
+                'name' => 'Pianos & Claviers',
+                'picture' => 'images/categories/3.png'
+            ],
+            4 => [
+                'name' => 'Accessoires pour musiciens',
+                'picture' => 'images/categories/4.png'
             ]
         ];
 

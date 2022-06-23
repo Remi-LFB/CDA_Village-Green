@@ -19,7 +19,7 @@
                 <div class="col">
                     <div class="card h-100">
                         <a class="a-category" href="{{ path('product_show', {'product': product.id}) }}">
-                            <img src="{{ product.picture }}" class="img-fluid mx-auto pb-3" height="250" width="250" alt="{{ product.label }}" title="{{ product.label }}">
+                            <img src="{{ asset(product.picture) }}" class="img-fluid mx-auto pb-3" height="250" width="250" alt="{{ product.label }}" title="{{ product.label }}">
                             <h5>{{ product.label }}</h5>
                             <p class="text-black">{{ product.overview|nl2br }}</p>
                             <table class="table border-top">

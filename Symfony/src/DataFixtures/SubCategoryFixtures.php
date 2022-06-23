@@ -12,38 +12,38 @@ class SubCategoryFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $category1 = $manager->getRepository(Category::class)->findOneBy(['name' => 'Guitares & Basses']);
-        $category2 = $manager->getRepository(Category::class)->findOneBy(['name' => 'Batteries']);
-        $category3 = $manager->getRepository(Category::class)->findOneBy(['name' => 'Pianos']);
+        $category2 = $manager->getRepository(Category::class)->findOneBy(['name' => 'Batteries & Percussions']);
+        $category3 = $manager->getRepository(Category::class)->findOneBy(['name' => 'Pianos & Claviers']);
 
         $subCategories = [
             1 => [
                 'name' => 'Guitares classiques',
-                'picture' => 'url',
+                'picture' => 'images/subcategories/1.png',
                 'category' => $category1
             ],
             2 => [
                 'name' => 'Guitares électriques',
-                'picture' => 'url',
+                'picture' => 'images/subcategories/2.png',
                 'category' => $category1
             ],
             3 => [
                 'name' => 'Guitares basses',
-                'picture' => 'url',
+                'picture' => 'images/subcategories/3.png',
                 'category' => $category1
             ],
             4 => [
                 'name' => 'Batteries acoustiques',
-                'picture' => 'url',
+                'picture' => 'images/subcategories/4.png',
                 'category' => $category2
             ],
             5 => [
                 'name' => 'Batteries électroniques',
-                'picture' => 'url',
+                'picture' => 'images/subcategories/5.png',
                 'category' => $category2
             ],
             6 => [
                 'name' => 'Synthétiseurs',
-                'picture' => 'url',
+                'picture' => 'images/subcategories/6.png',
                 'category' => $category3
             ]
         ];
