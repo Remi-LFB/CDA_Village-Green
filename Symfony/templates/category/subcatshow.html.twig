@@ -12,32 +12,36 @@
 {% endblock %}
 
 {% block body %}
-    <div class="text-center mt-3">
+    <div class="text-center">
         <h1 class="h2 fw-bold">{{ subCategory.name }}</h1><br>
-        <div class="row row-cols-1 row-cols-md-3 g-5">
-            {% for product in subCategory.products %}
-                <div class="col">
-                    <div class="card h-100">
-                        <a class="a-category" href="{{ path('product_show', {'product': product.id}) }}">
-                            <img src="{{ asset(product.picture) }}" class="img-fluid mx-auto pb-3" height="250" width="250" alt="{{ product.label }}" title="{{ product.label }}">
-                            <h5>{{ product.label }}</h5>
-                            <p class="text-black">{{ product.overview|nl2br }}</p>
-                            <table class="table border-top">
-                                <tbody>
-                                    <tr>
-                                        <td>{{ product.price }}€</td>
-                                        {% if not product.state or product.stock < 1 %}
-                                            <td class="text-danger">Indisponible</td>
-                                        {% else %}
-                                            <td class="text-success">En stock</td>
-                                        {% endif %}
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </a>
+        {% if subCategory.products is empty %}
+            <h2 class="h3">Il n'existe aucun produit pour cette sous-catégorie.</h2>
+        {% else %}
+            <div class="row row-cols-1 row-cols-md-3 g-5">
+                {% for product in subCategory.products %}
+                    <div class="col">
+                        <div class="card h-100">
+                            <a class="a-category" href="{{ path('product_show', {'product': product.id}) }}">
+                                <img src="{{ asset(product.picture) }}" class="img-fluid mx-auto pb-3" height="250" width="250" alt="{{ product.label }}" title="{{ product.label }}">
+                                <h5>{{ product.label }}</h5>
+                                <p class="text-black">{{ product.overview|nl2br }}</p>
+                                <table class="table border-top">
+                                    <tbody>
+                                        <tr class="bg-light">
+                                            <td>{{ product.price }}€</td>
+                                            {% if not product.state or product.stock < 1 %}
+                                                <td class="text-danger"><i class="fa-solid fa-xmark"></i> Indisponible</td>
+                                            {% else %}
+                                                <td class="text-success"><i class="fa-solid fa-check"></i> En stock</td>
+                                            {% endif %}
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
