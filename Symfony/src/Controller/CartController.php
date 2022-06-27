@@ -30,8 +30,10 @@ class CartController extends AbstractController
 
         foreach ($cartWithData as $item) {
             $totalItem = ($item['product']->getPrice() * 1.2) * $item['quantity'];
+            $tvaItem = ($totalItem / 100) * 20;
 
             $total += $totalItem;
+            $tva += $tvaItem;
     }
 
         return $this->render('cart/index.html.twig', [
