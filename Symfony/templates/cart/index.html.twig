@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier | Village Green{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item d-none d-md-block d-lg-block d-xl-block">
+        <a class="text-white" href="{{ path('cart_show') }}">Panier</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <h1 class="h2 fw-bold text-center mb-3">Panier</h1>
+    {% if items | length > 0 %}
+        <table class="table table-hover text-center align-middle">
+            <thead>
+                <tr class="bg-light">
+                    <th class="fw-bold">Référence</th>
+                    <th class="fw-bold">Produit</th>
+                    <th class="fw-bold">Prix unitaire HT</th>
+                    <th class="fw-bold">Quantité</th>
+                    <th class="fw-bold">Total HT</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.product.reference }}</td>
+                        <td>
+                            <a href="{{ path('product_show', {'product': item.product.id}) }}" class="a-category">{{ item.product.label }}</a>
+                        </td>
+                        <td>{{ item.product.price }}€</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.total|number_format(2) }}€</td>
+                        <td>
+                            <a href="" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr class="bg-light">
+                    <td colspan="4" class="text-end fw-bold border-bottom-0">TVA 20% :</td>
+                    <td class="border-bottom-0">{{ tva|number_format(2) }}€</td>
+                    <td class="border-bottom-0"></td>
+                </tr>
+                <tr class="bg-light">
+                    <td colspan="4" class="text-end fw-bold">Total TTC :</td>
+                    <td>{{ total|number_format(2) }}€</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    {% else %}
+        <h2 class="h3 text-center">Le panier est vide.</h2>
+    {% endif %}
+{% endblock %}
