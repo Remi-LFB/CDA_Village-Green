@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
 </head>
 <body class="d-flex flex-column min-vh-100">
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -23,16 +24,31 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <a class="navbar-brand mt-2 mt-lg-0 fw-bold" href="{{ path('home') }}">Village Green</a>
-                <!-- Formulaire de recherche -->
-                <form class="d-flex input-group w-auto mx-auto">
-                    <div class="form-outline">
-                        <input type="email" id="form1Example1" class="form-control">
-                        <label class="form-label" for="form1Example1"><i class="fas fa-search"></i> Recherche</label>
-                    </div>
-                </form>
             </div>
             <!-- Icônes de droite -->
             <div class="d-flex align-items-center">
+                <!-- Recherche -->
+                <a class="text-reset me-3" href="" data-mdb-toggle="modal" data-mdb-target="#searchModal">
+                    <i class="fas fa-search"></i>
+                </a>
+                <!-- Recherche Modal -->
+                <div class="modal top fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="searchModalLabel">Formulaire de recherche</h5>
+                                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <!-- Formulaire de recherche -->
+                            <div class="modal-body text-center">
+                                SearchType à insérer ici
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success fw-bold">Rechercher</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Panier -->
                 <a class="text-reset me-3" href="#"><i class="fas fa-shopping-cart"></i></a>
                 <!-- Connexion/Profil -->
