@@ -30,10 +30,14 @@
                             <a href="{{ path('product_show', {'product': item.product.id}) }}" class="a-category">{{ item.product.label }}</a>
                         </td>
                         <td>{{ item.product.price }}€</td>
-                        <td>{{ item.quantity }}</td>
+                        <td>
+                            <a href="{{ path('cart_minus', {'product': item.product.id}) }}" class="btn btn-danger btn-floating btn-sm me-1"><i class="fas fa-minus"></i></a>
+                            {{ item.quantity }}
+                            <a href="{{ path('cart_add', {'product': item.product.id, 'origin': app.request.attributes.get('_route')}) }}" class="btn btn-success btn-floating btn-sm ms-1"><i class="fas fa-plus"></i></a>
+                        </td>
                         <td>{{ item.total|number_format(2) }}€</td>
                         <td>
-                            <a href="" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></a>
+                            <a href="{{ path('cart_remove', {'product': item.product.id}) }}" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -52,6 +56,7 @@
             </tfoot>
         </table>
     {% else %}
-        <h2 class="h3 text-center">Le panier est vide.</h2>
+        <h2 class="h3 text-center">Votre panier est vide !</h2>
+        <img src="{{ asset('images/others/cart.jpg') }}" class="img-fluid d-flex mx-auto mt-3" alt="" height="300" width="300">
     {% endif %}
 {% endblock %}

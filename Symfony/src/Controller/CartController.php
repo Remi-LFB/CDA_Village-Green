@@ -2,59 +2,44 @@
 
 namespace App\Controller;
 
+use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\ProductRepository;
 
 class CartController extends AbstractController
 {
     #[Route('/cart', name: 'cart_show')]
-    public function index(SessionInterface $session, ProductRepository $productRepository): Response
+    public function index(CartService $cartService): Response
     {
-        $cart = $session->get('cart', []);
-
-        $cartWithData = [];
-
-        foreach ($cart as $id => $quantity) {
-            $cartWithData[] = [
-                'product' => $productRepository->find($id),
-                'quantity' => $quantity,
-                'total' => $productRepository->find($id)->getPrice() * $quantity
-            ];
-        }
-
-        $total = 0;
-        $tva = 0;
-
-        foreach ($cartWithData as $item) {
-            $totalItem = ($item['product']->getPrice() * 1.2) * $item['quantity'];
-            $tvaItem = ($totalItem / 100) * 20;
-
-            $total += $totalItem;
-            $tva += $tvaItem;
-    }
-
         return $this->render('cart/index.html.twig', [
-            'items' => $cartWithData,
-            'tva' => $tva,
-            'total' => $total
+            'items' => $cartService->getCart(),
+            'tva' => $cartService->getTva(),
+            'total' => $cartService->getTotal()
         ]);
     }
 
-    #[Route('/cart/add/{product}', name: 'cart_add')]
-    public function add($product, SessionInterface $session)
+    #[Route('/cart/add/{product}/{origin}', name: 'cart_add')]
+    public function add($product, $origin, CartService $cartService): Response
     {
-        $cart = $session->get('cart', []);
+        $cartService->add($product);
 
-        if (!empty($cart[$product])) {
-            $cart[$product]++;
-        }
-        else {
-            $cart[$product] = 1;
-        }
+        return $this->redirectToRoute($origin, $cartService->getPathParameter($origin, $product));
+    }
 
-        $session->set('cart', $cart);
+    #[Route('/cart/minus/{product}', name: 'cart_minus')]
+    public function minus($product, CartService $cartService): Response
+    {
+        $cartService->minus($product);
+
+        return $this->redirectToRoute('cart_show');
+    }
+
+    #[Route('/cart/remove/{product}', name: 'cart_remove')]
+    public function remove($product, CartService $cartService): Response
+    {
+        $cartService->remove($product);
+
+        return $this->redirectToRoute('cart_show');
     }
 }

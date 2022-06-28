@@ -42,7 +42,8 @@
                         <button class="btn btn-success fw-bold" disabled>Ajouter au panier</button>
                     </td>
                 {% else %}
-                    <td class="text-success text-center"><a href="{{ path('cart_add', {'product': product.id}) }}" class="btn btn-success fw-bold">Ajouter au panier</a>
+                    <td class="text-success text-center">
+                        <a href="{{ path('cart_add', {'product': product.id, 'origin': app.request.attributes.get('_route')}) }}" class="btn btn-success fw-bold">Ajouter au panier</a>
                     </td>
                 {% endif %}
             </tr>

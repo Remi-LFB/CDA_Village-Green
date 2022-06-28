@@ -13,6 +13,7 @@
         <h1 class="h2 fw-bold">{{ category.name }}</h1><br>
         {% if category.subCategories is empty %}
             <h2 class="h3">Il n'existe aucune sous-catégorie pour cette catégorie.</h2>
+            <img src="{{ asset('images/others/shrug.jpg') }}" class="img-fluid d-flex mx-auto mt-3" alt="">
         {% else %}
             <div class="row row-cols-1 row-cols-md-3 g-5">
                 {% for subCategory in category.subCategories %}
