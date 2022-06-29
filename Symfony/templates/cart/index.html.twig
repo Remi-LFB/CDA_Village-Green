@@ -33,7 +33,7 @@
                     <td>
                         <a href="{{ path('cart_minus', {'product': item.product.id}) }}" class="btn btn-danger btn-floating btn-sm me-1"><i class="fas fa-minus"></i></a>
                         {{ item.quantity }}
-                        <a href="{{ path('cart_add', {'product': item.product.id, 'origin': app.request.attributes.get('_route')}) }}" class="btn btn-success btn-floating btn-sm ms-1"><i class="fas fa-plus"></i></a>
+                        <a href="{{ path('cart_add', {'product': item.product.id, 'quantity': 1, 'origin': app.request.attributes.get('_route')}) }}" class="btn btn-success btn-floating btn-sm ms-1"><i class="fas fa-plus"></i></a>
                     </td>
                     <td>{{ item.total|number_format(2) }}€</td>
                     <td>

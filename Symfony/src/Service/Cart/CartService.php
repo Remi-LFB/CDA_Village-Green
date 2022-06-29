@@ -33,15 +33,16 @@ class CartService
         return $cartWithData;
     }
 
-    public function add(int $id): void
+    public function add(int $id, int $quantity): void
     {
         $cart = $this->session->get('cart', []);
 
-        if (!empty($cart[$id])) {
+        if (!empty($cart[$id]) && $quantity == 1) {
             $cart[$id]++;
-        }
-        else {
-            $cart[$id] = 1;
+        } else if (!empty($cart[$id]) && $quantity > 1) {
+            $cart[$id] += $quantity;
+        } else {
+            $cart[$id] = $quantity;
         }
 
         $this->session->set('cart', $cart);
@@ -109,5 +110,17 @@ class CartService
         }
 
         return $total;
+    }
+
+    public function getNumberItems(): int
+    {
+        $numberItems = 0;
+        $cart = $this->getCart();
+
+        foreach ($cart as $item => $value) {
+            $numberItems += $value['quantity'];
+        }
+
+        return $numberItems;
     }
 }

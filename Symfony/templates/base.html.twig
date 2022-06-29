@@ -50,7 +50,12 @@
                     </div>
                 </div>
                 <!-- Panier -->
-                <a class="text-reset me-3" href="{{ path('cart_index') }}"><i class="fas fa-shopping-cart"></i></a>
+                <a class="text-reset me-3" href="{{ path('cart_index') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                    {% if cartNumberItems >= 1 %}
+                        <span class="badge rounded-pill badge-notification bg-danger">{{ cartNumberItems }}</span>
+                    {% endif %}
+                </a>
                 <!-- Connexion/Profil -->
                 <div class="dropdown">
                     <a class="dropdown-toggle d-flex align-items-center hidden-arrow text-reset" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
@@ -71,6 +76,11 @@
             </div>
         </div>
     </nav>
+
+
+    {{ dump(app) }}
+   {# {{ app.session['cart'] | length }}#}
+
 
     <!-- Breadcrumb -->
     <nav class="navbar bg-dark mb-3">

@@ -15,14 +15,15 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig', [
             'items' => $cartService->getCart(),
             'tva' => $cartService->getTva(),
-            'total' => $cartService->getTotal()
+            'total' => $cartService->getTotal(),
+            'cartNumberItems' => $cartService->getNumberItems()
         ]);
     }
 
-    #[Route('/cart/add/{product}/{origin}', name: 'cart_add')]
-    public function add($product, $origin, CartService $cartService): Response
+    #[Route('/cart/add/{product}/{quantity}/{origin}', name: 'cart_add')]
+    public function add($product, $quantity, $origin, CartService $cartService): Response
     {
-        $cartService->add($product);
+        $cartService->add($product, $quantity);
 
         return $this->redirectToRoute($origin, $cartService->getPathParameter($origin, $product));
     }

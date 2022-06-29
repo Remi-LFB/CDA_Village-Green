@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,10 +11,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('/product/{product}', name: 'product_index')]
-    public function index(Product $product): Response
+    public function index(Product $product, CartService $cartService): Response
     {
         return $this->render('product/index.html.twig', [
-            'product' => $product
+            'product' => $product,
+            'cartNumberItems' => $cartService->getNumberItems()
         ]);
     }
 }
