@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ subCategory.name }} | Village Green{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item d-none d-md-block d-lg-block d-xl-block">
+        <a class="text-white" href="{{ path('category_index', {'category': subCategory.category.id}) }}">{{ subCategory.category.name }}</a>
+    </li>
+    <li class="breadcrumb-item d-none d-md-block d-lg-block d-xl-block">
+        <a class="text-white" href="{{ path('sub_category_index', {'subCategory': subCategory.id}) }}">{{ subCategory.name }}</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="text-center">
+        <h1 class="h2 fw-bold">{{ subCategory.name }}</h1><br>
+        {% if subCategory.products is empty %}
+            <h2 class="h3">Il n'existe aucun produit pour cette sous-catégorie.</h2>
+            <img src="{{ asset('images/others/shrug.jpg') }}" class="img-fluid d-flex mx-auto mt-3" alt="">
+        {% else %}
+            <div class="row row-cols-1 row-cols-md-3 g-5">
+                {% for product in subCategory.products %}
+                    <div class="col">
+                        <div class="card h-100">
+                            <a class="a-category" href="{{ path('product_index', {'product': product.id}) }}">
+                                <img src="{{ asset(product.picture) }}" class="img-fluid mx-auto pb-3" height="250" width="250" alt="{{ product.label }}" title="{{ product.label }}">
+                                <h5>{{ product.label }}</h5>
+                            </a>
+                            <p class="text-black">{{ product.overview|nl2br }}</p>
+                            <table class="table border-top align-middle">
+                                <tbody>
+                                    <tr class="bg-light">
+                                        <td>{{ product.price }}€</td>
+                                        {% if not product.state or product.stock < 1 %}
+                                            <td class="text-danger"><i class="fa-solid fa-xmark"></i> Indisponible</td>
+                                            <td>
+                                                <button class="btn btn-success btn-floating" disabled><i
+                                                            class="fas fa-cart-plus"></i></button>
+                                            </td>
+                                        {% else %}
+                                            <td class="text-success"><i class="fa-solid fa-check"></i> En stock</td>
+                                            <td>
+                                                <a href="{{ path('cart_add', {'product': product.id, 'origin': app.request.attributes.get('_route')}) }}" class="btn btn-success btn-floating"><i class="fas fa-cart-plus"></i></a>
+                                            </td>
+                                        {% endif %}
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

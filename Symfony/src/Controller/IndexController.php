@@ -9,8 +9,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
 {
-    #[Route('/', name: 'home')]
-    public function home(CategoryRepository $categoryRepository): Response
+    #[Route('/', name: 'index')]
+    public function index(CategoryRepository $categoryRepository): Response
     {
         return $this->render('index/index.html.twig', [
             'categories' => $categoryRepository->findAll()

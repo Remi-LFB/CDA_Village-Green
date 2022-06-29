@@ -4,7 +4,7 @@
 
 {% block breadcrumb %}
     <li class="breadcrumb-item d-none d-md-block d-lg-block d-xl-block">
-        <a class="text-white" href="{{ path('cart_show') }}">Panier</a>
+        <a class="text-white" href="{{ path('cart_index') }}">Panier</a>
     </li>
 {% endblock %}
 
@@ -23,24 +23,24 @@
                 </tr>
             </thead>
             <tbody>
-                {% for item in items %}
-                    <tr>
-                        <td>{{ item.product.reference }}</td>
-                        <td>
-                            <a href="{{ path('product_show', {'product': item.product.id}) }}" class="a-category">{{ item.product.label }}</a>
-                        </td>
-                        <td>{{ item.product.price }}€</td>
-                        <td>
-                            <a href="{{ path('cart_minus', {'product': item.product.id}) }}" class="btn btn-danger btn-floating btn-sm me-1"><i class="fas fa-minus"></i></a>
-                            {{ item.quantity }}
-                            <a href="{{ path('cart_add', {'product': item.product.id, 'origin': app.request.attributes.get('_route')}) }}" class="btn btn-success btn-floating btn-sm ms-1"><i class="fas fa-plus"></i></a>
-                        </td>
-                        <td>{{ item.total|number_format(2) }}€</td>
-                        <td>
-                            <a href="{{ path('cart_remove', {'product': item.product.id}) }}" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                {% endfor %}
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.product.reference }}</td>
+                    <td>
+                        <a href="{{ path('product_index', {'product': item.product.id}) }}" class="a-category">{{ item.product.label }}</a>
+                    </td>
+                    <td>{{ item.product.price }}€</td>
+                    <td>
+                        <a href="{{ path('cart_minus', {'product': item.product.id}) }}" class="btn btn-danger btn-floating btn-sm me-1"><i class="fas fa-minus"></i></a>
+                        {{ item.quantity }}
+                        <a href="{{ path('cart_add', {'product': item.product.id, 'origin': app.request.attributes.get('_route')}) }}" class="btn btn-success btn-floating btn-sm ms-1"><i class="fas fa-plus"></i></a>
+                    </td>
+                    <td>{{ item.total|number_format(2) }}€</td>
+                    <td>
+                        <a href="{{ path('cart_remove', {'product': item.product.id}) }}" class="btn btn-danger btn-floating"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
             </tbody>
             <tfoot>
                 <tr class="bg-light">

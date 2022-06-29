@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
-    #[Route('/cart', name: 'cart_show')]
+    #[Route('/cart', name: 'cart_index')]
     public function index(CartService $cartService): Response
     {
         return $this->render('cart/index.html.twig', [
@@ -32,7 +32,7 @@ class CartController extends AbstractController
     {
         $cartService->minus($product);
 
-        return $this->redirectToRoute('cart_show');
+        return $this->redirectToRoute('cart_index');
     }
 
     #[Route('/cart/remove/{product}', name: 'cart_remove')]
@@ -40,6 +40,6 @@ class CartController extends AbstractController
     {
         $cartService->remove($product);
 
-        return $this->redirectToRoute('cart_show');
+        return $this->redirectToRoute('cart_index');
     }
 }

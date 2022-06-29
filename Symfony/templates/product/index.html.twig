@@ -4,13 +4,13 @@
 
 {% block breadcrumb %}
     <li class="breadcrumb-item d-none d-md-block d-lg-block d-xl-block">
-        <a class="text-white" href="{{ path('category_show', {'category': product.subCategory.category.id}) }}">{{ product.subCategory.category.name }}</a>
+        <a class="text-white" href="{{ path('category_index', {'category': product.subCategory.category.id}) }}">{{ product.subCategory.category.name }}</a>
     </li>
     <li class="breadcrumb-item d-none d-md-block d-lg-block d-xl-block">
-        <a class="text-white" href="{{ path('subcategory_show', {'subCategory': product.subCategory.id}) }}">{{ product.subCategory.name }}</a>
+        <a class="text-white" href="{{ path('sub_category_index', {'subCategory': product.subCategory.id}) }}">{{ product.subCategory.name }}</a>
     </li>
     <li class="breadcrumb-item d-none d-md-block d-lg-block d-xl-block">
-        <a class="text-white" href="{{ path('product_show', {'product': product.id}) }}">{{ product.label }}</a>
+        <a class="text-white" href="{{ path('product_index', {'product': product.id}) }}">{{ product.label }}</a>
     </li>
 {% endblock %}
 
@@ -18,8 +18,7 @@
     <h1 class="h2 text-center fw-bold">{{ product.label }}</h1>
     <p class="text-center"><span class="fw-bold">Référence :</span> {{ product.reference }}</p>
     <a class="card shadow-0 mt-3 pb-3" href="{{ asset(product.picture) }}" target="_blank">
-        <img src="{{ asset(product.picture) }}" alt="{{ product.label }}" title="{{ product.label }}"
-             class="img-fluid img-thumbnail hover-shadow mx-auto p-3" height="400" width="400">
+        <img src="{{ asset(product.picture) }}" alt="{{ product.label }}" title="{{ product.label }}" class="img-fluid img-thumbnail hover-shadow mx-auto p-3" height="400" width="400">
     </a>
     <table class="table">
         <thead>

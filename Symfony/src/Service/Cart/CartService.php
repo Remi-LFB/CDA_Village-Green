@@ -65,11 +65,11 @@ class CartService
     {
         $parameter = [];
 
-        if ($origin == 'product_show') {
+        if ($origin == 'product_index') {
             $parameter = [
                 'product' => $id
             ];
-        } else if ($origin == 'subcategory_show') {
+        } else if ($origin == 'sub_category_index') {
             $parameter = [
                 'subCategory' => $this->productRepository->find($id)->getSubCategory()->getId()
             ];

@@ -9,10 +9,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    #[Route('/product/{product}', name: 'product_show')]
-    public function show(Product $product): Response
+    #[Route('/product/{product}', name: 'product_index')]
+    public function index(Product $product): Response
     {
-        return $this->render('product/show.html.twig', [
+        return $this->render('product/index.html.twig', [
             'product' => $product
         ]);
     }

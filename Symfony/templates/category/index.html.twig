@@ -4,7 +4,7 @@
 
 {% block breadcrumb %}
     <li class="breadcrumb-item d-none d-md-block d-lg-block d-xl-block">
-        <a class="text-white" href="{{ path('category_show', {'category': category.id}) }}">{{ category.name }}</a>
+        <a class="text-white" href="{{ path('category_index', {'category': category.id}) }}">{{ category.name }}</a>
     </li>
 {% endblock %}
 
@@ -19,7 +19,8 @@
                 {% for subCategory in category.subCategories %}
                     <div class="col">
                         <div class="border-bottom h-100 m-1">
-                            <a class="a-category" href="{{ path('subcategory_show', {'subCategory': subCategory.id}) }}">
+                            <a class="a-category"
+                               href="{{ path('sub_category_index', {'subCategory': subCategory.id}) }}">
                                 <img src="{{ asset(subCategory.picture) }}" class="img-fluid mx-auto pb-3" height="150" width="150" alt="{{ subCategory.name }}" title="{{ subCategory.name }}">
                                 <h5>{{ subCategory.name }}</h5>
                             </a>
