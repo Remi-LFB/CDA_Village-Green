@@ -52,6 +52,7 @@
                 <!-- Panier -->
                 <a class="text-reset me-3" href="{{ path('cart_index') }}">
                     <i class="fas fa-shopping-cart"></i>
+                    {% set cartNumberItems = app.session.get('cartNumberItems') %}
                     {% if cartNumberItems >= 1 %}
                         <span class="badge rounded-pill badge-notification bg-danger">{{ cartNumberItems }}</span>
                     {% endif %}
@@ -76,11 +77,6 @@
             </div>
         </div>
     </nav>
-
-
-    {{ dump(app) }}
-   {# {{ app.session['cart'] | length }}#}
-
 
     <!-- Breadcrumb -->
     <nav class="navbar bg-dark mb-3">

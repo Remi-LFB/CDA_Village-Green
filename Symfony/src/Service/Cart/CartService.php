@@ -46,6 +46,7 @@ class CartService
         }
 
         $this->session->set('cart', $cart);
+        $this->update();
     }
 
     public function minus(int $id): void
@@ -60,6 +61,7 @@ class CartService
         }
 
         $this->session->set('cart', $cart);
+        $this->update();
     }
 
     public function getPathParameter(string $origin, int $id): array
@@ -88,6 +90,19 @@ class CartService
         }
 
         $this->session->set('cart', $cart);
+        $this->update();
+    }
+
+    public function update(): void
+    {
+        $cart = $this->getCart();
+        $cartNumberItems = 0;
+
+        foreach ($cart as $item => $value) {
+            $cartNumberItems += $value['quantity'];
+        }
+
+        $this->session->set('cartNumberItems', $cartNumberItems);
     }
 
     public function getTva(): float
