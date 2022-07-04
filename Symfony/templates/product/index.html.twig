@@ -41,12 +41,13 @@
                         <button class="btn btn-success fw-bold" disabled>Ajouter au panier</button>
                     </td>
                 {% else %}
-                    {% set counter = 1 %}
                     <td class="text-center">
-                        {{ counter }}
+                        <input id="qvalue" type="number" value="1" min="1">
                     </td>
                 {% endif %}
             </tr>
         </tbody>
     </table>
 {% endblock %}
+
+{% block javascripts %}<script src="{{ asset('js/product.js') }}"></script>{% endblock %}
