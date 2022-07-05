@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
@@ -27,6 +28,9 @@ class User
     #[ORM\Column(type: 'date')]
     private $birthAt;
 
+    #[ORM\Column(type: 'string', length: 5)]
+    private $gender;
+
     #[ORM\Column(type: 'string', length: 15)]
     private $type;
 
@@ -40,7 +44,11 @@ class User
     private $mail;
 
     #[ORM\Column(type: 'string', length: 60)]
+    #[Assert\Length(min: "8", minMessage: 'Votre mdp doit faire 8 caractères.')]
     private $password;
+
+    #[Assert\EqualTo(propertyPath: 'password', message: 'Vos mots de passe doivent être identique.')]
+    public $confirmPassword;
 
     #[ORM\Column(type: 'string', length: 10)]
     private $phone;
@@ -127,6 +135,18 @@ class User
     public function setBirthAt(\DateTimeInterface $birthAt): self
     {
         $this->birthAt = $birthAt;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(string $gender): self
+    {
+        $this->gender = $gender;
 
         return $this;
     }

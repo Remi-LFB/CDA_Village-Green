@@ -19,6 +19,7 @@ class UserFixtures extends Fixture
                 'lastname' => $faker->lastName,
                 'firstname' => $faker->firstName,
                 'birthAt' => new \DateTime($faker->date('Y-m-d', '2000-01-01')),
+                'gender' => 'Homme',
                 'type' => 'Employé',
                 'coefficient' => 1.0,
                 'role' => 'Administrateur',
@@ -37,6 +38,7 @@ class UserFixtures extends Fixture
                 'lastname' => $faker->lastName,
                 'firstname' => $faker->firstName,
                 'birthAt' => new \DateTime($faker->date()),
+                'gender' => 'Femme',
                 'type' => 'Particulier',
                 'coefficient' => 1.0,
                 'role' => 'Client',
@@ -60,6 +62,7 @@ class UserFixtures extends Fixture
                 ->setLastname($value['lastname'])
                 ->setFirstname($value['firstname'])
                 ->setBirthAt($value['birthAt'])
+                ->setGender($value['gender'])
                 ->setType($value['type'])
                 ->setCoefficient($value['coefficient'])
                 ->setRole($value['role'])

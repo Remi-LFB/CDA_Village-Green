@@ -42,12 +42,10 @@
                     </td>
                 {% else %}
                     <td class="text-center">
-                        <input id="qvalue" type="number" value="1" min="1">
+                        <a href="{{ path('cart_add', {'product': product.id, 'quantity': 1, 'origin': app.request.attributes.get('_route')}) }}" class="btn btn-success fw-bold">Ajouter au panier</a>
                     </td>
                 {% endif %}
             </tr>
         </tbody>
     </table>
 {% endblock %}
-
-{% block javascripts %}<script src="{{ asset('js/product.js') }}"></script>{% endblock %}
