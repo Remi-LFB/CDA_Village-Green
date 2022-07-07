@@ -57,23 +57,42 @@
                         <span class="badge rounded-pill badge-notification bg-danger">{{ cartNumberItems }}</span>
                     {% endif %}
                 </a>
-                <!-- Connexion/Profil -->
-                <div class="dropdown">
-                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow text-reset" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                {% if app.user %}
+                    <div class="dropdown">
+                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow text-reset" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user-pen me-2"></i>Mon profil
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-box me-2"></i> Commandes
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('app_logout') }}" class="dropdown-item">
+                                    <i class="fas fa-door-closed me-2"></i>Déconnexion
+                                </a>
+                            </li>
+                            {% if app.user and is_granted('ROLE_ADMIN') %}
+                                <li>
+                                    <a href="#" class="dropdown-item border-top fw-bold">
+                                        <i class="fas fa-gear me-2"></i> Dashboard
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="d-flex align-items-center hidden-arrow text-reset">
                         <i class="fas fa-right-to-bracket"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                        <li>
-                            <a class="dropdown-item" href="#">My profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Settings</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Logout</a>
-                        </li>
-                    </ul>
-                </div>
+                {% endif %}
+                <!-- Connexion/Profil -->
             </div>
         </div>
     </nav>
@@ -117,16 +136,13 @@
                         <h5 class="text-uppercase">Contact</h5>
                         <ul class="list-unstyled mb-0">
                             <li>
-                                30 Rue de Poulainville
+                                <i class="fas fa-house me-2"></i>30 Rue de Poulainville, 80000 Amiens
                             </li>
                             <li>
-                                80000 Amiens
+                                <i class="fas fa-phone me-2"></i>03.29.92.30.03
                             </li>
                             <li>
-                                03.29.92.30.03
-                            </li>
-                            <li>
-                                village-green@afpa.fr
+                                <i class="fas fa-envelope me-2"></i>village-green@afpa.fr
                             </li>
                         </ul>
                     </div>
@@ -135,10 +151,14 @@
                         <h5 class="text-uppercase">Liens</h5>
                         <ul class="list-unstyled mb-0">
                             <li>
-                                <a href="#" class="text-white">Mentions légales</a>
+                                <a href="#" class="text-white">
+                                    <i class="fas fa-scale-balanced me-2"></i>Mentions légales
+                                </a>
                             </li>
                             <li>
-                                <a href="#" class="text-white">Nous contacter</a>
+                                <a href="#" class="text-white">
+                                    <i class="fas fa-comments me-2"></i>Nous contacter
+                                </a>
                             </li>
                         </ul>
                     </div>

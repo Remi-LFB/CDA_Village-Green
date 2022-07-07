@@ -22,8 +22,8 @@ class UserFixtures extends Fixture
                 'gender' => 'Homme',
                 'type' => 'Employé',
                 'coefficient' => 1.0,
-                'role' => 'Administrateur',
-                'mail' => 'admin@villagegreen.fr',
+                'email' => 'admin@villagegreen.fr',
+                'roles' => ['ROLE_ADMIN'],
                 'password' => password_hash('admin', PASSWORD_DEFAULT),
                 'phone' => '0304050607',
                 'address' => $faker->address,
@@ -41,8 +41,8 @@ class UserFixtures extends Fixture
                 'gender' => 'Femme',
                 'type' => 'Particulier',
                 'coefficient' => 1.0,
-                'role' => 'Client',
-                'mail' => 'client.particulier@villagegreen.fr',
+                'email' => 'client.particulier@villagegreen.fr',
+                'roles' => ['ROLE_USER'],
                 'password' => password_hash('client.particulier', PASSWORD_DEFAULT),
                 'phone' => '0405060708',
                 'address' => $faker->address,
@@ -65,8 +65,7 @@ class UserFixtures extends Fixture
                 ->setGender($value['gender'])
                 ->setType($value['type'])
                 ->setCoefficient($value['coefficient'])
-                ->setRole($value['role'])
-                ->setMail($value['mail'])
+                ->setEmail($value['email'])
                 ->setPassword($value['password'])
                 ->setPhone($value['phone'])
                 ->setAddress($value['address'])
@@ -74,7 +73,8 @@ class UserFixtures extends Fixture
                 ->setCity($value['city'])
                 ->setCountry($value['country'])
                 ->setCreatedAt($value['createdAt'])
-                ->setLastSeenAt($value['lastSeenAt']);
+                ->setLastSeenAt($value['lastSeenAt'])
+                ->setRoles($value['roles']);
 
             $manager->persist($user);
         }
