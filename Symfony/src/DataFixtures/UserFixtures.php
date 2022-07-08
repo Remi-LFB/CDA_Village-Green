@@ -15,11 +15,11 @@ class UserFixtures extends Fixture
 
         $users = [
             1 => [
-                'reference' => 'USE001',
+                'reference' => 'USE1',
                 'lastname' => $faker->lastName,
                 'firstname' => $faker->firstName,
                 'birthAt' => new \DateTime($faker->date('Y-m-d', '2000-01-01')),
-                'gender' => 'Homme',
+                'gender' => 'Masculin',
                 'type' => 'Employé',
                 'coefficient' => 1.0,
                 'email' => 'admin@villagegreen.fr',
@@ -34,11 +34,11 @@ class UserFixtures extends Fixture
                 'lastSeenAt' => new \DateTime()
             ],
             2 => [
-                'reference' => 'USE002',
+                'reference' => 'USE2',
                 'lastname' => $faker->lastName,
                 'firstname' => $faker->firstName,
                 'birthAt' => new \DateTime($faker->date()),
-                'gender' => 'Femme',
+                'gender' => 'Féminin',
                 'type' => 'Particulier',
                 'coefficient' => 1.0,
                 'email' => 'client.particulier@villagegreen.fr',

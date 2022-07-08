@@ -11,7 +11,7 @@ class CommandFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $user1 = $manager->getRepository(User::class)->findOneBy(['reference' => 'USE002']);
+        $user1 = $manager->getRepository(User::class)->findOneBy(['reference' => 'USE2']);
 
         $commands = [
             1 => [

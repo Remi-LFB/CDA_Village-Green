@@ -18,32 +18,32 @@ class SubCategoryFixtures extends Fixture
         $subCategories = [
             1 => [
                 'name' => 'Guitares classiques',
-                'picture' => 'images/subcategories/1.png',
+                'picture' => 'images/sub_categories/1.png',
                 'category' => $category1
             ],
             2 => [
                 'name' => 'Guitares électriques',
-                'picture' => 'images/subcategories/2.png',
+                'picture' => 'images/sub_categories/2.png',
                 'category' => $category1
             ],
             3 => [
                 'name' => 'Guitares basses',
-                'picture' => 'images/subcategories/3.png',
+                'picture' => 'images/sub_categories/3.png',
                 'category' => $category1
             ],
             4 => [
                 'name' => 'Batteries acoustiques',
-                'picture' => 'images/subcategories/4.png',
+                'picture' => 'images/sub_categories/4.png',
                 'category' => $category2
             ],
             5 => [
                 'name' => 'Batteries électroniques',
-                'picture' => 'images/subcategories/5.png',
+                'picture' => 'images/sub_categories/5.png',
                 'category' => $category2
             ],
             6 => [
                 'name' => 'Synthétiseurs',
-                'picture' => 'images/subcategories/6.png',
+                'picture' => 'images/sub_categories/6.png',
                 'category' => $category3
             ]
         ];
