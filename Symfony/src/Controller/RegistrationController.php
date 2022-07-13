@@ -29,6 +29,7 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             )
+                ->setRoles(['ROLE_USER'])
                 ->setType('Particulier')
                 ->setCoefficient(1.0)
                 ->setCreatedAt(new \DateTime())

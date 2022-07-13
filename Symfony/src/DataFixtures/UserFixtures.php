@@ -21,7 +21,6 @@ class UserFixtures extends Fixture
                 'birthAt' => new \DateTime($faker->date('Y-m-d', '2000-01-01')),
                 'gender' => 'Masculin',
                 'type' => 'Employé',
-                'coefficient' => 1.0,
                 'email' => 'admin@villagegreen.fr',
                 'roles' => ['ROLE_ADMIN'],
                 'password' => password_hash('admin', PASSWORD_DEFAULT),
@@ -40,7 +39,6 @@ class UserFixtures extends Fixture
                 'birthAt' => new \DateTime($faker->date()),
                 'gender' => 'Féminin',
                 'type' => 'Particulier',
-                'coefficient' => 1.0,
                 'email' => 'client.particulier@villagegreen.fr',
                 'roles' => ['ROLE_USER'],
                 'password' => password_hash('client.particulier', PASSWORD_DEFAULT),
@@ -64,7 +62,6 @@ class UserFixtures extends Fixture
                 ->setBirthAt($value['birthAt'])
                 ->setGender($value['gender'])
                 ->setType($value['type'])
-                ->setCoefficient($value['coefficient'])
                 ->setEmail($value['email'])
                 ->setPassword($value['password'])
                 ->setPhone($value['phone'])

@@ -48,9 +48,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $type;
 
     #[ORM\Column(type: 'decimal', precision: 2, scale: 1)]
-    private $coefficient;
+    private $coefficient = 1.0;
 
-    #[ORM\Column(type: 'string', length: 10)]
+    #[ORM\Column(type: 'string', length: 10, nullable: true)]
     private $phone;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]

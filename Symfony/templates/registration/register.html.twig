@@ -2,16 +2,50 @@
 
 {% block title %}Register{% endblock %}
 
+{% block breadcrumb %}
+    <li class="breadcrumb-item d-none d-md-block d-lg-block d-xl-block">
+        <a class="text-white" href="{{ path('app_register') }}">Inscription</a>
+    </li>
+{% endblock %}
+
 {% block body %}
-    <h1>Register</h1>
+    <h1 class="h3 mb-4 font-weight-normal">S'enregistrer :</h1>
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    {{ form_widget(registrationForm.lastname, {'class': 'form-control'}) }}
+                    <label for="registration_form_lastname" class="form-label">Nom</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    {{ form_widget(registrationForm.firstname, {'class': 'form-control'}) }}
+                    <label for="registration_form_firstname" class="form-label">Prénom</label>
+                </div>
+            </div>
+        </div>
 
-        <button type="submit" class="btn">Register</button>
+        <div class="mb-4">
+            <label for="registration_form_birthAt">Date de naissance :</label>
+            {{ form_widget(registrationForm.birthAt, {'class': 'form-control'}) }}
+        </div>
+
+        <div class="mb-4">
+            <label for="registration_form_gender" class="form-label">Genre</label>
+            {{ form_widget(registrationForm.gender, {'class': 'form-control'}) }}
+        </div>
+
+        <div class="form-outline mb-4">
+            {{ form_widget(registrationForm.email, {'class': 'form-control'}) }}
+            <label for="registration_form_email" class="form-label">Adresse email</label>
+        </div>
+
+        <div class="form-outline mb-4">
+            {{ form_row(registrationForm.plainPassword, {'class': 'form-control'}) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">S'enregistrer</button>
     {{ form_end(registrationForm) }}
 {% endblock %}
