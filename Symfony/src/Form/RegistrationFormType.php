@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -30,6 +31,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Vous devez accepter nos termes pour finaliser votre inscription.',
                     ]),
                 ],
+                'label' => 'J\'accepte le traitement informatique de mon inscription.'
             ])
             ->add('plainPassword', RepeatedType::class, [
                 // instead of being set onto the object directly,
@@ -40,7 +42,7 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entre un mot de passe',
+                        'message' => 'Veuillez entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 8,
@@ -52,7 +54,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('lastname')
             ->add('firstname')
-            ->add('birthAt', DateType::class, [
+            ->add('birthAt', BirthdayType::class, [
                 'widget' => 'single_text'
             ])
             ->add('gender', ChoiceType::class, [

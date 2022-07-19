@@ -33,12 +33,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $reference;
 
     #[ORM\Column(type: 'string', length: 50)]
+    #[Assert\Regex('/^\p{L}+$/', message: 'Votre nom ne doit contenir que des lettres.')]
     private $lastname;
 
     #[ORM\Column(type: 'string', length: 50)]
+    #[Assert\Regex('/^\p{L}+$/', message: 'Votre prénom ne doit contenir que des lettres.')]
     private $firstname;
 
     #[ORM\Column(type: 'date')]
+    #[Assert\LessThan('18 years ago', message: 'Vous devez avoir plus de 18 ans pour vous enregistrer.')]
     private $birthAt;
 
     #[ORM\Column(type: 'string', length: 8)]
